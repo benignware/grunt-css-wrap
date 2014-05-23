@@ -38,5 +38,10 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ], 
+  "dependencies": {
+    "chalk": "~0.4.0", 
+    "css-parse": "", 
+    "css-stringify": ""
+  }
 }
