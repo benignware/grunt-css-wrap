@@ -10,57 +10,51 @@
 
 var parse = require('css-parse');
 var stringify = require('css-stringify');
+var chalk = require('chalk');
+
 module.exports = function(grunt) {
     
   grunt.registerMultiTask('css_wrap', 'wrap css rules in a namespace', function() {
      
     var options = this.options({
       // defaults
-      name: ""
+      selector: ".css-wrap"
     });
     
+    var dest;
+
     this.files.forEach(function(f) {
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file ' + filepath + ' not found.');
-          return false;
-        } else {
-          return true;
-        }
-      });
-
-      if (src.length === 0) {
-        grunt.log.warn('Destination ' + f.dest + ' not written because src files were empty.');
-        return;
-      }
       
-      
-      var css = grunt.file.read(f.src);
-      
-      var obj = parse(css);
-
-      // Print parsed object as CSS string
-      
-      var rules = obj.stylesheet.rules;
-      rules.forEach(function(r) {
+      f.src.forEach(function(src) {
         
-        
-        if (r.selectors) {
-          r.selectors.forEach(function(s, index) {
-            var selector = options.selector ? options.selector + " " + s : s;
-            r.selectors[index] = selector;
+          dest = f.dest;
+          
+          var css = grunt.file.read(src);
+      
+          var obj = parse(css);
+    
+          var rules = obj.stylesheet.rules;
+          rules.forEach(function(r) {
+            
+            if (r.selectors) {
+              r.selectors.forEach(function(s, index) {
+                var selector = options.selector ? options.selector + " " + s : s;
+                r.selectors[index] = selector;
+              });
+            }
+            
           });
           
-        }
+          var output = stringify(obj);
+          
+          grunt.file.write(dest, output);
         
       });
       
-      var output = stringify(obj);
-      
-      grunt.file.write(f.dest, output);
-      
     });
+    
   });
+  
+  
     
 };
