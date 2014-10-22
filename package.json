@@ -1,7 +1,7 @@
 {
   "name": "grunt-css-wrap",
   "description": "wrap css rules in a namespace",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/benignware/grunt-css-wrap",
   "author": {
     "name": "Rafael Nowrotek",
@@ -38,10 +38,10 @@
   },
   "keywords": [
     "gruntplugin"
-  ], 
+  ],
   "dependencies": {
-    "chalk": "~0.4.0", 
-    "css-parse": "", 
+    "chalk": "~0.4.0",
+    "css-parse": "",
     "css-stringify": ""
   }
 }

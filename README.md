@@ -51,8 +51,8 @@ Wrap all rules in a css-file with a certain selector.
 ```js
 css_wrap: {
   compile: {
-    src: 'src/styles.css', 
-    dest: 'build/styles.css', 
+    src: 'src/styles.css',
+    dest: 'build/styles.css',
     options: {
       selector: '.my-app'
     }
@@ -64,4 +64,6 @@ css_wrap: {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+
+ -  0.1.1: Updated to enable processing of media queries
+
