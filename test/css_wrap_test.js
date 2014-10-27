@@ -32,7 +32,7 @@ exports.css_wrap = {
 
     var actual = grunt.file.read('tmp/default_options');
     var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    test.equal(actual, expected, 'CSS Files do not match');
 
     test.done();
   }
