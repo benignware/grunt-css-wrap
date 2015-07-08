@@ -8,48 +8,27 @@
  * Copyright (c) 2014 Rafael Nowrotek
  * Licensed under the MIT license.
  *
- * Copyright (c) 2014 Zanzamar
+ * Copyright (c) 2014 Zanzamar 0.1.1
  *
  */
 
 'use strict';
 
-var parse = require( 'css-parse' );
-var stringify = require( 'css-stringify' );
-var chalk = require( 'chalk' );
+var
+  css_wrap = require( 'css-wrap' ),
+  chalk = require( 'chalk' );
 
 module.exports = function( grunt ) {
-	grunt.registerMultiTask( 'css_wrap', 'wrap css rules in a namespace', function() {
-		function processRules( list ) {
-			return list.map( function( r ) {
-				if ( r.selectors ) {
-					r.selectors.forEach( function( s, index ) {
-						var selector = options.selector ? options.selector + " " + s : s;
-						r.selectors[ index ] = selector;
-					});
-				}
-				if( r.type === "media" ) {
-					r.rules = processRules( r.rules );
-				}
-				return r;
-			});
-		}
+	grunt.registerMultiTask( 'css_wrap', 'Wrap CSS rules in a namespace', function() {
 
 		var options = this.options({
-
 			// defaults
 			selector: ".css-wrap"
 		});
 
-		var dest;
 		this.files.forEach( function( f ) {
 			f.src.forEach( function( src ) {
-				dest = f.dest;
-				var css = grunt.file.read( src );
-				var obj = parse( css );
-				obj.stylesheet.rules = processRules( obj.stylesheet.rules );
-				var output = stringify( obj );
-				grunt.file.write( dest, output );
+				grunt.file.write( f.dest, css_wrap( src, options ) );
 			});
 		});
 	});

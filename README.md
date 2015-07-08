@@ -64,6 +64,6 @@ css_wrap: {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-
+ -  0.1.2: Moved business to separate module [css-wrap](https://github.com/benignware/css-wrap)
  -  0.1.1: Updated to enable processing of media queries
 
