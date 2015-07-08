@@ -1,6 +1,6 @@
 # grunt-css-wrap
 
-> wrap css rules in a namespace
+> Wrap CSS rules in a namespace
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
